@@ -6,17 +6,18 @@ import '../../data/models/task.dart';
 
 class HomeController extends GetxController {
   final formKey = GlobalKey<FormState>();
-  final formEditCtrl = TextEditingController();
-  final chipIndex = 0.obs;
-  final deleting = false.obs;
   TaskRepository taskRepository;
-
   HomeController({
     required this.taskRepository,
   });
 
+  final formEditCtrl = TextEditingController();
+  final chipIndex = 0.obs;
+  final deleting = false.obs;
   final tasks = <Task>[].obs;
   final task = Rx<Task?>(null);
+  final doingTodos = <dynamic>[].obs;
+  final doneTodos = <dynamic>[].obs;
 
   @override
   void onInit() {
@@ -30,18 +31,6 @@ class HomeController extends GetxController {
     // TODO: implement onClose
     formEditCtrl.dispose();
     super.onClose();
-  }
-
-  void changeChipIndex(int value) {
-    chipIndex.value = value;
-  }
-
-  void changeDeleting(bool value) {
-    deleting.value = value;
-  }
-
-  void changeTask(Task? select) {
-    task.value = select;
   }
 
   bool addTask(Task task) {
@@ -72,5 +61,32 @@ class HomeController extends GetxController {
 
   bool containTodo(List todos, String title) {
     return todos.any((element) => element['title'] == title);
+  }
+
+  void changeChipIndex(int value) {
+    chipIndex.value = value;
+  }
+
+  void changeDeleting(bool value) {
+    deleting.value = value;
+  }
+
+  void changeTask(Task? select) {
+    task.value = select;
+  }
+
+  void changeTodo(List<dynamic> select) {
+    doneTodos.clear();
+    doingTodos.clear();
+
+    for (var i = 0; i < select.length; i++) {
+      var todo = select[i];
+      var status = todo['done'];
+      if (status == true) {
+        doneTodos.add(todo);
+      } else {
+        doingTodos.add(todo);
+      }
+    }
   }
 }
