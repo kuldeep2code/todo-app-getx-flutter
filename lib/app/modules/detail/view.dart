@@ -3,11 +3,26 @@ import 'package:get/get.dart';
 import 'package:todo_app_getx/app/modules/home/controller.dart';
 
 class DetailPage extends StatelessWidget {
-  var homeCtrl = Get.find<HomeController>();
+  final homeCtrl = Get.find<HomeController>();
   DetailPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: ListView(
+        children: [
+          Row(
+            children: [
+              IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  Get.back();
+                },
+              ),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
