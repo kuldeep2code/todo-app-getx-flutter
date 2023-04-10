@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:todo_app_getx/app/modules/detail/widgets/done_list.dart';
 import 'package:todo_app_getx/app/modules/home/controller.dart';
 
 import '../../core/utils/extensions.dart';
+import 'widgets/doing_list.dart';
 
 class DetailPage extends StatelessWidget {
-  var homeCtrl = Get.find<HomeController>();
+  final homeCtrl = Get.find<HomeController>();
   DetailPage({super.key});
 
   @override
@@ -26,7 +29,9 @@ class DetailPage extends StatelessWidget {
                     icon: const Icon(Icons.arrow_back),
                     onPressed: () {
                       Get.back();
+                      homeCtrl.updateTodo();
                       homeCtrl.changeTask(null);
+                      homeCtrl.formEditCtrl.clear();
                     },
                   ),
                 ],
@@ -106,8 +111,42 @@ class DetailPage extends StatelessWidget {
               ),
               child: TextFormField(
                 controller: homeCtrl.formEditCtrl,
+                autofocus: true,
+                decoration: InputDecoration(
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey[400]!),
+                  ),
+                  prefixIcon: Icon(
+                    Icons.check_box_outline_blank,
+                    color: Colors.grey[400],
+                  ),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      if (homeCtrl.formKey.currentState!.validate()) {
+                        var success =
+                            homeCtrl.addTodo(homeCtrl.formEditCtrl.text);
+                        if (success) {
+                          EasyLoading.showSuccess('Todo item added');
+                        } else {
+                          EasyLoading.showError('Todo item already exits');
+                        }
+                        homeCtrl.updateTodo();
+                        homeCtrl.formEditCtrl.clear();
+                      }
+                    },
+                    icon: const Icon(Icons.done),
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Please enter your todo item';
+                  }
+                  return null;
+                },
               ),
             ),
+            DoingList(),
+            DoneList(),
           ],
         ),
       ),
