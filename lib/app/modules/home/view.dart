@@ -70,7 +70,8 @@ class HomePage extends GetView<HomeController> {
                   EasyLoading.showInfo('Please create task first..');
                 }
               },
-              backgroundColor: controller.deleting.value ? Colors.red : red,
+              backgroundColor:
+                  controller.deleting.value ? Colors.red : darkGreen,
               child: Icon(controller.deleting.value ? Icons.delete : Icons.add),
             ),
           );
@@ -92,7 +93,7 @@ class HomePage extends GetView<HomeController> {
             currentIndex: controller.tabIndex.value,
             showSelectedLabels: false,
             showUnselectedLabels: false,
-            selectedItemColor: Colors.red[300],
+            selectedItemColor: Colors.lightGreen,
             items: const [
               BottomNavigationBarItem(
                 label: 'Home',

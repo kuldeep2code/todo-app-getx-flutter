@@ -141,7 +141,7 @@ class AddDialog extends StatelessWidget {
                           if (homeCtrl.task.value == element)
                             const Icon(
                               Icons.check,
-                              color: red,
+                              color: darkGreen,
                             ),
                         ],
                       ),

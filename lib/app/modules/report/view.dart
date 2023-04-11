@@ -89,7 +89,7 @@ class ReportPage extends StatelessWidget {
                     totalSteps: createdTasks == 0 ? 1 : createdTasks,
                     currentStep: completedTasks,
                     stepSize: 20,
-                    selectedColor: green,
+                    selectedColor: purple,
                     unselectedColor: Colors.grey[200],
                     padding: 0,
                     width: 150,
