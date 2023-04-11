@@ -41,7 +41,7 @@ A Flutter to-do application that allows users to create, manage and track their 
   - View progress reports by clicking on the "Reports" button.
 
 ### Snapshots
-<img src="https://github.com/kuldeep2code/insta-clone/blob/main/assets/img/todo-example.jpg" width="600">
+<img src="https://github.com/kuldeep2code/todo-app-getx-flutter/blob/main/assets/img/todo-example.jpg" width="600">
 
 
 ### Contributing
