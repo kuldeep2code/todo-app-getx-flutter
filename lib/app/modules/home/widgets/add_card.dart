@@ -74,7 +74,7 @@ class AddCard extends StatelessWidget {
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: blue,
+                        backgroundColor: red,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
@@ -92,8 +92,8 @@ class AddCard extends StatelessWidget {
                               color: color);
                           Get.back();
                           homeCtrl.addTask(task)
-                              ? EasyLoading.showSuccess('status')
-                              : EasyLoading.showError('Error');
+                              ? EasyLoading.showSuccess('Task Created')
+                              : EasyLoading.showError('Task Already Exists');
 
                           homeCtrl.formEditCtrl.clear();
                           homeCtrl.changeChipIndex(0);

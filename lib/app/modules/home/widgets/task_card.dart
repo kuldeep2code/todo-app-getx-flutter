@@ -30,8 +30,8 @@ class TaskCard extends StatelessWidget {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.grey[300]!,
-              blurRadius: 7,
+              color: Colors.grey[400]!,
+              blurRadius: 8,
               offset: const Offset(0, 7),
             ),
           ],
@@ -41,7 +41,8 @@ class TaskCard extends StatelessWidget {
           children: [
             StepProgressIndicator(
               totalSteps: homeCtrl.isTodoEmpty(task) ? 1 : task.todos!.length,
-              currentStep: homeCtrl.getDoneTodo(task),
+              currentStep:
+                  homeCtrl.isTodoEmpty(task) ? 0 : homeCtrl.getDoneTodo(task),
               size: 5,
               padding: 0,
               selectedGradientColor: LinearGradient(
