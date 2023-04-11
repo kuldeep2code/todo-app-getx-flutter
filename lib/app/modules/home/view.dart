@@ -93,7 +93,7 @@ class HomePage extends GetView<HomeController> {
             currentIndex: controller.tabIndex.value,
             showSelectedLabels: false,
             showUnselectedLabels: false,
-            selectedItemColor: Colors.lightGreen,
+            selectedItemColor: darkGreen,
             items: const [
               BottomNavigationBarItem(
                 label: 'Home',
